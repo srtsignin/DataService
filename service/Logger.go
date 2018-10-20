@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Logger is a wrapper function for HTTP requests which logs the request to the endpoint
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()

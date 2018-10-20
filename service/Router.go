@@ -6,6 +6,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// NewRouter returns a *mux.Router which can be configured with
+// the Routes in Routes.go and wraps all calls with the Logger
+// defined in Logger.go
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {

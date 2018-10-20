@@ -2,6 +2,7 @@ package main
 
 import "net/http"
 
+// A Route is a route exposed by the webservice
 type Route struct {
 	Name        string
 	Method      string
@@ -9,6 +10,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes is an array of multiple Route objects
 type Routes []Route
 
 var routes = Routes{
