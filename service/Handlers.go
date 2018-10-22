@@ -1,6 +1,7 @@
 package main
 
 import (
+	"DataService/models"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -12,15 +13,21 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
+	fmt.Fprintln(w, "Hello World!")
 }
 
-func TodoIndex(w http.ResponseWriter, r *http.Request) {
+func Store(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(todos); err != nil {
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
 		panic(err)
+		return
 	}
+	var activeUserModel = models.ActiveUserModel{}
+	json.Unmarshal(body, &activeUserModel)
+	log.Println(activeUserModel)
+	// TODO
 }
 
 func TodoShow(w http.ResponseWriter, r *http.Request) {
