@@ -1,5 +1,6 @@
 FROM scratch
 
-ADD service.exe /
+COPY . .
+RUN ls
 
 CMD /service.exe
