@@ -1,6 +1,7 @@
 PACKAGE  = DataService
+MODULE = service
 GOPATH   = $(CURDIR)/.gopath
-BASE     = $(GOPATH)/src/$(PACKAGE)
+BASE     = $(GOPATH)/src/$(PACKAGE)/$(MODULE)
 
 $(BASE):
     @mkdir -p $(dir $@)
