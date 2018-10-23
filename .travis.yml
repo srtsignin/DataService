@@ -3,6 +3,8 @@ language: go
 go:
   - "1.11.1"
 
+install: make
+
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker build -t cjblink1/srtsignin-data-service:$TRAVIS_COMMIT .
