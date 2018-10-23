@@ -7,9 +7,9 @@
 
 ## EndPoints Exposed
 
-- /   [GET]
+- [GET] at /
   - Returns "Hello World!"
-- /store    [POST]
+- [POST] at /store
   - Expects a [ActiveUserModel](models/ActiveUserModel.go) object
   - Example Body
     ```json
