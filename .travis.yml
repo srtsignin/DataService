@@ -3,7 +3,7 @@ language: go
 go:
   - "1.11.1"
   
-go_import_path: github.com/srtsignin/DataService
+go_import_path: github.com/srtsignin/DataService/models
 
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
