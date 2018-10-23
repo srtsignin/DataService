@@ -2,4 +2,4 @@ FROM scratch
 
 ADD service /
 
-CMD /service
+CMD ["/service"]
