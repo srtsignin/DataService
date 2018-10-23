@@ -2,9 +2,8 @@ language: go
 
 go:
   - "1.11.1"
-
-install:
-  - go get -t -v ./service
+  
+go_import_path: github.com/srtsignin/DataService
 
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
