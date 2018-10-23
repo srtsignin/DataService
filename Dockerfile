@@ -1,9 +1,6 @@
 FROM bash
 
-RUN ls
-ADD service /
-RUN ls
 COPY . .
-RUN ls
+RUN ls /bin/
 
 CMD ["/service"]
