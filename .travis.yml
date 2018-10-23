@@ -4,7 +4,7 @@ go:
   - "1.11.1"
 
 before_install:
-  - go get -v github.com/srtsignin/DataService
+  - go get -v github.com/srtsignin/DataService/...
 
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
