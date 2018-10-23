@@ -8,4 +8,4 @@ $(BASE):
 
 .PHONY: all
 all: | $(BASE)
-    cd $(BASE) && $(GO) build -o bin/$(PACKAGE) main.go
+    cd $(BASE) && $(GO) build -o release/$(PACKAGE) main.go
