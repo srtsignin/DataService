@@ -1,11 +1,11 @@
 package database
 
 import (
+	"DataService/models"
 	"log"
 	"time"
 
 	couchdb "github.com/rhinoman/couchdb-go"
-	"github.com/srtsignin/DataService/models"
 	"github.com/tkanos/gonfig"
 )
 

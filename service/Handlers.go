@@ -1,14 +1,13 @@
 package main
 
 import (
+	"DataService/database"
+	"DataService/models"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-
-	"github.com/srtsignin/DataService/database"
-	"github.com/srtsignin/DataService/models"
 )
 
 // Index provides the heartbeat endpoint to determine availability of service
