@@ -1,5 +1,5 @@
-FROM bash
+FROM scratch
 
 ADD service /
 
-RUN /service
+CMD /service
