@@ -3,9 +3,6 @@ language: go
 go:
   - "1.11.1"
 
-before_install:
-  - go get -v github.com/srtsignin/DataService/...
-
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker build -t cjblink1/srtsignin-data-service:$TRAVIS_COMMIT .
