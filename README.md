@@ -3,7 +3,7 @@
 ## Running Locally
 
 - cd into the `DataService` folder
-- `go build .\service\; .\service.exe`  
+- Windows: `go build .\service\; .\service.exe`  
 
 ## EndPoints Exposed
 
