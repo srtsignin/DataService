@@ -1,6 +1,5 @@
 FROM bash
 
-COPY . .
-RUN ls
+ADD service /
 
-CMD /service.exe
+RUN /service
