@@ -21,7 +21,12 @@ type Checkoff struct {
 	TutorFirstName     string    `json:"tutorFirstName"`
 	TutorLastName      string    `json:"tutorLastName"`
 	RoomID             string    `json:"roomId"`
-	ID                 string    `json:"_id"`
+	id                 string
+}
+
+// GetID returns the _id of the Checkoff Object
+func (c Checkoff) GetID() string {
+	return c.id
 }
 
 // CreateCheckoff creates a Checkoff object from an
@@ -40,7 +45,7 @@ func CreateCheckoff(activeUserModel ActiveUserModel) Checkoff {
 		TutorFirstName:     parseFirstName(activeUserModel.TutorName),
 		TutorLastName:      parseLastName(activeUserModel.TutorName),
 		RoomID:             activeUserModel.RoomID,
-		ID:                 strconv.FormatInt(activeUserModel.CheckInTime, 10) + activeUserModel.Username,
+		id:                 strconv.FormatInt(activeUserModel.CheckInTime, 10) + activeUserModel.Username,
 	}
 }
 

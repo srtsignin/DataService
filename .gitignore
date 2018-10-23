@@ -17,3 +17,6 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Secrets
+data-service-conf.json

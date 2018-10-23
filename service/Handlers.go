@@ -1,64 +1,40 @@
 package main
 
 import (
+	"DataService/database"
 	"DataService/models"
 	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
+// Index provides the heartbeat endpoint to determine availability of service
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hello World!")
 }
 
+// Store handles POST requests to /store
+// This converts the object to a checkoff model and
+// sends it to long term storage
 func Store(w http.ResponseWriter, r *http.Request) {
+	defer func() {
+		if recovery := recover(); recovery != nil {
+			fmt.Fprintln(w, models.CreateHTTPResponse(recovery, false).ToJSON())
+		}
+	}()
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		panic(err)
-		return
+		log.Panicln(err)
 	}
+	log.Printf("Received in body: %v\n", string(body))
 	activeUserModel := models.ActiveUserModel{}
 	json.Unmarshal(body, &activeUserModel)
-	log.Printf("%+v\n", activeUserModel)
-	checkoff := models.CreateCheckoff(activeUserModel)
-	log.Printf("%+v\n", checkoff)
-}
 
-func TodoShow(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	todoId := vars["todoId"]
-	fmt.Fprintln(w, "Todo show:", todoId)
-}
-
-func TodoCreate(w http.ResponseWriter, r *http.Request) {
-	var todo Todo
-	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
-	if err != nil {
-		panic(err)
-	}
-	if err := r.Body.Close(); err != nil {
-		panic(err)
-	}
-	if err := json.Unmarshal(body, &todo); err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(422) // unprocessable entity
-		log.Println("Hello")
-		var error = "{ \"error\" : \"Unable to do anything\"}"
-		fmt.Fprintln(w, error)
-		return
-	}
-
-	t := RepoCreateTodo(todo)
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusCreated)
-	if err := json.NewEncoder(w).Encode(t); err != nil {
-		panic(err)
-	}
+	db := database.GetDriver()
+	db.Store(models.CreateCheckoff(activeUserModel))
 }

@@ -26,16 +26,4 @@ var routes = Routes{
 		"/store",
 		Store,
 	},
-	Route{
-		"TodoShow",
-		"GET",
-		"/todos/{todoId}",
-		TodoShow,
-	},
-	Route{
-		"TodoCreate",
-		"POST",
-		"/todos",
-		TodoCreate,
-	},
 }
