@@ -24,10 +24,11 @@ func Store(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 		return
 	}
-	var activeUserModel = models.ActiveUserModel{}
+	activeUserModel := models.ActiveUserModel{}
 	json.Unmarshal(body, &activeUserModel)
-	log.Println(activeUserModel)
-	// TODO
+	log.Printf("%+v\n", activeUserModel)
+	checkoff := models.CreateCheckoff(activeUserModel)
+	log.Printf("%+v\n", checkoff)
 }
 
 func TodoShow(w http.ResponseWriter, r *http.Request) {
