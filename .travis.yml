@@ -4,9 +4,6 @@ go:
   - "1.11.1"
 
 script:
-  - export GOPATH="${TRAVIS_BUILD_DIR}/Godeps/_workspace:$GOPATH"
-  - export PATH="${TRAVIS_BUILD_DIR}/Godeps/_workspace/bin:$PATH"
-  - go build -ldflags='-s -w' .\service\
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker build -t cjblink1/srtsignin-data-service:$TRAVIS_COMMIT .
   - docker push cjblink1/srtsignin-data-service:$TRAVIS_COMMIT
