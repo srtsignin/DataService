@@ -16,10 +16,9 @@ type CouchDBDriver struct {
 
 // Store stores a Checkoff model into CouchDB
 func (couchDbDatabase CouchDBDriver) Store(checkoff models.Checkoff) {
-	conf, conn := connectToCouchDB()
+	conf, conn, auth := connectToCouchDB()
 
-	auth := couchdb.BasicAuth{Username: conf.CouchDB.Username, Password: conf.CouchDB.Password}
-	db := conn.SelectDB(conf.CouchDB.Database, &auth)
+	db := conn.SelectDB(conf.CouchDB.Database, auth)
 
 	_, err := db.Save(checkoff, checkoff.GetID(), "")
 
@@ -28,7 +27,7 @@ func (couchDbDatabase CouchDBDriver) Store(checkoff models.Checkoff) {
 	}
 }
 
-func connectToCouchDB() (models.Configuration, couchdb.Connection) {
+func connectToCouchDB() (models.Configuration, couchdb.Connection, couchdb.Auth) {
 	conf := models.Configuration{}
 	err := gonfig.GetConf("./config/data-service-conf.json", &conf)
 	if err != nil {
@@ -37,9 +36,11 @@ func connectToCouchDB() (models.Configuration, couchdb.Connection) {
 
 	var timeout = time.Duration(500 * time.Millisecond)
 	conn, err := couchdb.NewConnection(conf.CouchDB.ConnectionString, conf.CouchDB.DatabasePort, timeout)
+	auth := couchdb.BasicAuth{Username: conf.CouchDB.Username, Password: conf.CouchDB.Password}
 
 	if err != nil {
 		log.Panicln(err)
 	}
-	return conf, *conn
+
+	return conf, *conn, &auth
 }
