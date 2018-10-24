@@ -11,4 +11,4 @@ run:
 
 build-linux:
 	go get -t -v
-	GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME) -v
+	GOOS=linux GOARCH=amd64 go build -ldflags='-s -w' -o $(BINARY_NAME) -v
