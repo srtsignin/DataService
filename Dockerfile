@@ -1,8 +1,4 @@
-FROM bash
-
-RUN ls
-COPY . .
-RUN ls
+FROM scratch
 
 ADD data-service.exe /
 
