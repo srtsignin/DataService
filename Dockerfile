@@ -1,8 +1,9 @@
 FROM bash
 
 RUN ls
-ADD data-service /
+COPY . .
 RUN ls
 
+ADD data-service.exe /
 
-CMD ["/data-service"]
+CMD ["/data-service.exe"]
