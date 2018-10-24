@@ -1,10 +1,5 @@
-FROM bash
-
-RUN ls
+FROM scratch
 
 ADD data_service_runner /
 
-RUN ls
-
-# CMD ["/data_service_runner"]
-CMD tail -f /dev/null
+CMD ["/data_service_runner"]
