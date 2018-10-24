@@ -3,7 +3,7 @@ language: go
 go:
   - "1.11.1"
 
-install: make
+install: make -n all
 
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
