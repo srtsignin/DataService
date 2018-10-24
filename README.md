@@ -2,8 +2,9 @@
 
 ## Running Locally
 
-- cd into the `DataService` folder
-- Windows: `go build .\service\; .\service.exe`  
+- cd into the `data-service` folder
+- Windows: `go build; .\data-service.exe`  
+- Linux (With Makefile): `make run`
 
 ## EndPoints Exposed
 
