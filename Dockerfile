@@ -1,4 +1,4 @@
-FROM bash
+FROM ubuntu
 
 RUN ls
 
