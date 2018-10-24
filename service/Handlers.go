@@ -1,4 +1,4 @@
-package main
+package service
 
 import (
 	"encoding/json"
@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/srtsignin/dataService/database"
-	"github.com/srtsignin/dataService/models"
+	"github.com/srtsignin/dataservice/database"
+	"github.com/srtsignin/dataservice/models"
 )
 
 // Index provides the heartbeat endpoint to determine availability of service
