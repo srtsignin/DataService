@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/srtsignin/dataservice/database"
-	"github.com/srtsignin/dataservice/models"
+	"github.com/srtsignin/data-service/database"
+	"github.com/srtsignin/data-service/models"
 )
 
 // Index provides the heartbeat endpoint to determine availability of service

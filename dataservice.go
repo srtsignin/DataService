@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/srtsignin/dataservice/service"
+	"github.com/srtsignin/data-service/service"
 )
 
 // PORT to expose for the service

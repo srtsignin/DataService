@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/srtsignin/dataservice/models"
+	"github.com/srtsignin/data-service/models"
 )
 
 // Driver represents a driver object for connecting

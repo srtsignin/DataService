@@ -5,7 +5,7 @@ import (
 	"time"
 
 	couchdb "github.com/rhinoman/couchdb-go"
-	"github.com/srtsignin/dataservice/models"
+	"github.com/srtsignin/data-service/models"
 	"github.com/tkanos/gonfig"
 )
 
