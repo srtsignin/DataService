@@ -7,4 +7,4 @@ ADD data-service.exe /
 RUN ls
 
 # CMD ["/data-service.exe"]
-CMD sleep infinity
+CMD tail -f /dev/null
