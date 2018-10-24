@@ -1,6 +1,6 @@
 PACKAGE = DataService
 MODULE = service
-BASE = $(GOPATH)/src/$(PACKAGE)/$(MODULE)
+BASE = $(GOPATH)/src/$(PACKAGE)
 
 $(BASE):
 	@mkdir -p $(dir $@)
@@ -8,4 +8,4 @@ $(BASE):
 
 .PHONY: all
 all: | $(BASE)
-	cd $(BASE) && go build -o release/$(PACKAGE) Main.go
+	cd $(BASE)/$(MODULE) && go build -o /release/$(PACKAGE) Main.go
