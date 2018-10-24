@@ -1,9 +1,5 @@
-FROM bash
+FROM scratch
 
-RUN ls
-COPY . .
-RUN ls
-RUN ls /service/
-RUN ls /bin/
+ADD data-service /
 
-CMD ["/service"]
+CMD ["/data-service"]
