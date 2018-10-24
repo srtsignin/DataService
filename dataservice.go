@@ -1,10 +1,11 @@
 package main
 
 import (
-	"DataService/router"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/srtsignin/dataService/router"
 )
 
 // PORT to expose for the service
