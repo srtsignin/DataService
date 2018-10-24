@@ -11,6 +11,6 @@ run:
 
 build-linux:
 	go get -t -v
-	shell export GOOS=linux
-	shell export GOARCH=amd64
+	GOOS=linux
+	GOARCH=amd64
 	go build -o $(BINARY_NAME) -v
