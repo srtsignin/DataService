@@ -1,4 +1,4 @@
-BINARY_NAME = data-service.exe
+BINARY_NAME = data_service_runner
 
 build:
 	go get -t -v
