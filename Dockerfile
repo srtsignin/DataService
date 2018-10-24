@@ -6,4 +6,5 @@ ADD data-service.exe /
 
 RUN ls
 
-CMD ["/data-service.exe"]
+# CMD ["/data-service.exe"]
+CMD sleep infinity
