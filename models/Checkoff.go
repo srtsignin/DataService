@@ -1,6 +1,7 @@
 package models
 
 import (
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -32,7 +33,7 @@ func (c Checkoff) GetID() string {
 // CreateCheckoff creates a Checkoff object from an
 // ActiveUserModel changing all relevant fields
 func CreateCheckoff(activeUserModel ActiveUserModel) Checkoff {
-	return Checkoff{
+	checkoff := Checkoff{
 		StudentUsername:    activeUserModel.Username,
 		StudentFirstName:   parseFirstName(activeUserModel.Name),
 		StudentLastName:    parseLastName(activeUserModel.Name),
@@ -47,6 +48,8 @@ func CreateCheckoff(activeUserModel ActiveUserModel) Checkoff {
 		RoomID:             activeUserModel.RoomID,
 		id:                 strconv.FormatInt(activeUserModel.CheckInTime, 10) + activeUserModel.Username,
 	}
+	log.Printf("Converted to: %v\n", checkoff)
+	return checkoff
 }
 
 func parseFirstName(fullName string) string {

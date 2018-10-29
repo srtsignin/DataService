@@ -22,6 +22,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 func Store(w http.ResponseWriter, r *http.Request) {
 	defer func() {
 		if recovery := recover(); recovery != nil {
+			log.Println(recovery)
 			fmt.Fprintln(w, models.CreateHTTPResponse(recovery, false).ToJSON())
 		}
 	}()
@@ -36,7 +37,9 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Received in body: %v\n", string(body))
 	activeUserModel := models.ActiveUserModel{}
 	json.Unmarshal(body, &activeUserModel)
+	log.Println("Unmarshalled response")
 
 	db := database.GetDriver()
 	db.Store(models.CreateCheckoff(activeUserModel))
+	log.Println("Stored in DB")
 }
