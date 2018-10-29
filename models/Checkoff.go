@@ -53,13 +53,11 @@ func CreateCheckoff(activeUserModel ActiveUserModel) Checkoff {
 }
 
 func parseFirstName(fullName string) string {
-	log.Println("Full Name to parse" + fullName)
 	var strings = strings.Split(fullName, " ")
 	return strings[0]
 }
 
 func parseLastName(fullName string) string {
-	log.Println("Full Name to parse" + fullName)
 	var strings = strings.Split(fullName, " ")
 	return strings[1]
 }
