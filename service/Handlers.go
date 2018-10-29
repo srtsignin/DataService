@@ -34,7 +34,6 @@ func Store(w http.ResponseWriter, r *http.Request) {
 		log.Panicln(err)
 	}
 
-	log.Printf("Raw body: %v\n", body)
 	log.Printf("Received in body: %v\n", string(body))
 	activeUserModel := models.ActiveUserModel{}
 	json.Unmarshal(body, &activeUserModel)
