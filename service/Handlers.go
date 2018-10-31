@@ -43,4 +43,5 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	db := database.GetDriver()
 	db.Store(models.CreateCheckoff(activeUserModel))
 	log.Println("Stored in DB")
+	fmt.Fprintln(w, models.CreateHTTPResponse(nil, true).ToJSON())
 }
