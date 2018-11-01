@@ -65,3 +65,47 @@ func parseLastName(fullName string) string {
 func convertLongToTime(longTime int64) time.Time {
 	return time.Unix(0, longTime*int64(time.Millisecond))
 }
+
+//ToDelimited returns the struct in a delimited form using the provided rune
+/* The order of the fields printed are:
+StudentUsername
+StudentFirstName
+StudentLastName
+CheckInTime
+CheckOutTime
+Duration
+ProblemDescription
+TutorUsername
+TutorFirstName
+TutorLastName
+RoomID
+id
+Courses
+*/
+func (c Checkoff) Delimited(delimiter rune) string {
+	var builder strings.Builder
+
+	builder.WriteString(c.StudentUsername)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.StudentFirstName)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.StudentLastName)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.CheckInTime.String())
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.CheckOutTime.String())
+	builder.WriteRune(delimiter)
+	builder.WriteString(strconv.FormatInt(c.Duration, 10))
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.ProblemDescription)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.TutorUsername)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.TutorFirstName)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.TutorLastName)
+	builder.WriteRune(delimiter)
+	builder.WriteString(c.Courses.Delimited(delimiter))
+
+	return builder.String()
+}

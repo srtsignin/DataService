@@ -2,6 +2,7 @@ package database
 
 import (
 	"log"
+	"strings"
 	"time"
 
 	couchdb "github.com/rhinoman/couchdb-go"
@@ -16,9 +17,7 @@ type CouchDBDriver struct {
 
 // Store stores a Checkoff model into CouchDB
 func (couchDbDatabase CouchDBDriver) Store(checkoff models.Checkoff) {
-	conf, conn, auth := connectToCouchDB()
-
-	db := conn.SelectDB(conf.CouchDB.Database, auth)
+	db := connectToCouchDB()
 
 	_, err := db.Save(checkoff, checkoff.GetID(), "")
 
@@ -27,7 +26,31 @@ func (couchDbDatabase CouchDBDriver) Store(checkoff models.Checkoff) {
 	}
 }
 
-func connectToCouchDB() (models.Configuration, couchdb.Connection, couchdb.Auth) {
+// GenerateCSV reads from the database and creates a .csv string
+func (couchDbDatabase CouchDBDriver) GenerateCSV() string {
+	db := connectToCouchDB()
+
+	var results AllDocsResponse
+
+	err := db.GetView("all_docs", "all_docs", &results, nil)
+
+	if err != nil {
+		log.Panicln(err)
+	}
+	log.Printf("Received %d results from couchdb", results.TotalRows)
+	log.Printf("Returned from Couchdb: %+v\n", results)
+
+	var builder strings.Builder
+
+	for _, row := range results.Rows {
+		builder.WriteString(row.Data.Delimited(','))
+		builder.WriteRune('\n')
+	}
+
+	return builder.String()
+}
+
+func connectToCouchDB() *couchdb.Database {
 	conf := models.Configuration{}
 	err := gonfig.GetConf("./config/data-service-conf.json", &conf)
 	if err != nil {
@@ -42,5 +65,5 @@ func connectToCouchDB() (models.Configuration, couchdb.Connection, couchdb.Auth)
 		log.Panicln(err)
 	}
 
-	return conf, *conn, &auth
+	return conn.SelectDB(conf.CouchDB.Database, &auth)
 }

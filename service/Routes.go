@@ -26,4 +26,10 @@ var routes = Routes{
 		"/store",
 		Store,
 	},
+	Route{
+		"CSV",
+		"GET",
+		"/csv",
+		CSV,
+	},
 }

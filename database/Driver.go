@@ -8,6 +8,7 @@ import (
 // to a Long Term Storage database
 type Driver interface {
 	Store(checkoff models.Checkoff)
+	GenerateCSV() string
 }
 
 // GetDriver Returns a database driver

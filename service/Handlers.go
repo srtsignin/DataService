@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
+	"time"
 
 	"github.com/srtsignin/data-service/database"
 	"github.com/srtsignin/data-service/models"
@@ -43,4 +45,16 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	db.Store(models.CreateCheckoff(activeUserModel))
 	log.Println("Stored in DB")
 	fmt.Fprintln(w, models.CreateHTTPResponse(nil, true).ToJSON())
+}
+
+// CSV offers a .csv file for download
+func CSV(w http.ResponseWriter, r *http.Request) {
+	modtime := time.Now()
+
+	w.Header().Add("Content-Disposition", "Attachment")
+
+	db := database.GetDriver()
+	csvString := db.GenerateCSV()
+
+	http.ServeContent(w, r, "random.csv", modtime, strings.NewReader(csvString))
 }
