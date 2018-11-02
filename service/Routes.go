@@ -3,6 +3,9 @@ package service
 import "net/http"
 
 // A Route is a route exposed by the webservice
+// The name of the route should be prefaced with the minimal level of authentication required to
+// access the endpoint. I.E. Staff_Test can be accessed by Staff or Above. Any route starting
+// with _ can be accessed by anyone
 type Route struct {
 	Name        string
 	Method      string
@@ -15,19 +18,19 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"Test",
+		"_Test",
 		"GET",
 		"/",
 		Index,
 	},
 	Route{
-		"Store",
+		"Tutor_Store",
 		"POST",
 		"/store",
 		Store,
 	},
 	Route{
-		"CSV",
+		"Staff_CSV",
 		"GET",
 		"/csv",
 		CSV,
