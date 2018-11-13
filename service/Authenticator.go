@@ -65,7 +65,7 @@ func callRoleService(token string) models.RolesResponse {
 	defer resp.Body.Close()
 
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response Body:", string(body))
+	log.Println("response Body:", string(body))
 	response := models.RolesResponse{}
 	json.Unmarshal(body, &response)
 	return response
