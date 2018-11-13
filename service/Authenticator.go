@@ -42,6 +42,7 @@ func checkPermissions(w http.ResponseWriter, r *http.Request, minimumAccessLevel
 		log.Panicln("No Auth Token Provided")
 	}
 	response := callRoleService(token)
+	log.Printf("User received was %+v\n", response)
 	return auth(response.Roles, minimumAccessLevel), response
 }
 
