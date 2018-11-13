@@ -5,6 +5,9 @@
         "username": "<USERNAME>",
         "password": "<PASSWORD>",
         "database": "<NAME OF INTERNAL DATABASE IN COUCHDB>"
+    },
+    "roleService" : {
+        "url" : "<URL>"
     }
 }
 

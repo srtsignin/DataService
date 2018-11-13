@@ -35,3 +35,5 @@
       "count": 0
     }
     ```
+  - [GET] at `/csv`
+    - Returns a CSV of the current state of the database

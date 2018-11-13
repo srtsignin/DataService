@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/srtsignin/data-service/database"
 	"github.com/srtsignin/data-service/models"
 )
@@ -39,7 +40,11 @@ func Store(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Received in body: %v\n", string(body))
 	activeUserModel := models.ActiveUserModel{}
 	json.Unmarshal(body, &activeUserModel)
-	log.Println("Unmarshalled response")
+	log.Printf("Unmarshalled response %v\n", activeUserModel)
+
+	if cmp.Equal(activeUserModel, models.ActiveUserModel{}) {
+		log.Panic("Incorrect format of Body")
+	}
 
 	db := database.GetDriver()
 	db.Store(models.CreateCheckoff(activeUserModel))

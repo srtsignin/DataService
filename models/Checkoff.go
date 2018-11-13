@@ -66,7 +66,7 @@ func convertLongToTime(longTime int64) time.Time {
 	return time.Unix(0, longTime*int64(time.Millisecond))
 }
 
-//ToDelimited returns the struct in a delimited form using the provided rune
+// Delimited returns the struct in a delimited form using the provided rune
 /* The order of the fields printed are:
 StudentUsername
 StudentFirstName
