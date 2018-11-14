@@ -112,5 +112,6 @@ func (c Checkoff) Delimited(delimiter rune) string {
 
 func escape(description string) string {
 	description = strings.Replace(description, "\"", "\"\"", -1)
+	description = strings.Replace(description, "\n", " ", -1)
 	return "\"\"" + description + "\"\""
 }
