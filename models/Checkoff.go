@@ -97,7 +97,7 @@ func (c Checkoff) Delimited(delimiter rune) string {
 	builder.WriteRune(delimiter)
 	builder.WriteString(strconv.FormatInt(c.Duration, 10))
 	builder.WriteRune(delimiter)
-	builder.WriteString(c.ProblemDescription)
+	builder.WriteString(escape(c.ProblemDescription))
 	builder.WriteRune(delimiter)
 	builder.WriteString(c.TutorUsername)
 	builder.WriteRune(delimiter)
@@ -108,4 +108,9 @@ func (c Checkoff) Delimited(delimiter rune) string {
 	builder.WriteString(c.Courses.Delimited(delimiter))
 
 	return builder.String()
+}
+
+func escape(description string) string {
+	description = strings.Replace(description, "\"", "\"\"", -1)
+	return "\"\"" + description + "\"\""
 }
